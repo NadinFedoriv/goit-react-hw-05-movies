@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 
 export const Layout = () => {
   return (
@@ -14,6 +16,7 @@ export const Layout = () => {
       <main>
         <Outlet />
       </main>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 };

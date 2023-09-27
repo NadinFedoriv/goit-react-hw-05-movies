@@ -18,19 +18,15 @@ export const getTrending = () => {
     });
 };
 
-
-
-
-
 export const searchMovies = query => {
   return axios
     .get('/search/movie', {
       params: {
-        key: API_KEY,
+        api_key: API_KEY,
         query: query,
       },
     })
-    .then(response => response.data)
+    .then(response => response.data.results)
     .catch(error => {
       console.error('Error fetching movies:', error);
       throw error;
@@ -41,7 +37,7 @@ export const getMovieDetails = movieId => {
   return axios
     .get(`/movie/${movieId}`, {
       params: {
-        key: API_KEY,
+        api_key: API_KEY,
       },
     })
     .then(response => response.data)
@@ -55,7 +51,7 @@ export const getMovieCredits = movieId => {
   return axios
     .get(`/movie/${movieId}/credits`, {
       params: {
-        key: API_KEY,
+        api_key: API_KEY,
       },
     })
     .then(response => response.data)
@@ -69,7 +65,7 @@ export const getMovieReviews = movieId => {
   return axios
     .get(`/movie/${movieId}/reviews`, {
       params: {
-        key: API_KEY,
+        api_key: API_KEY,
       },
     })
     .then(response => response.data)

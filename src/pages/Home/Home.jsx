@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import MoviesList from 'components/MoviesList';
-import { getTrending } from 'moviesAPI';
+import MoviesList from 'components/MoviesList/MoviesList';
+import { getTrending } from 'services/moviesAPI';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -8,15 +8,14 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTrending = async () => {
+        const fetchTrending = async () => {
       try {
         setLoading(true);
         const response = await getTrending();
         setMovies(response);
       } catch (error) {
         setError(error);
-      }
-      finally {
+      } finally {
         setLoading(false);
       }
     };
@@ -25,11 +24,7 @@ const Home = () => {
 
   return (
     <>
-      {loading && (
-        <p>
-          Loader
-        </p>
-      )}
+      {loading && <p>Loader</p>}
       {error && <p>Something go wrong</p>}
       {movies.length > 0 && <MoviesList movies={movies} />}
     </>
