@@ -1,5 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { Suspense } from 'react';
+import { Loader } from 'components/Loader/Loader';
 
 
 export const Layout = () => {
@@ -13,9 +15,9 @@ export const Layout = () => {
           <NavLink to="/movies">Movies</NavLink>
         </li>
       </ul>
-      <main>
+      <Suspense fallback = {<Loader/>}>
         <Outlet />
-      </main>
+      </Suspense>
       <ToastContainer autoClose={2000} />
     </div>
   );

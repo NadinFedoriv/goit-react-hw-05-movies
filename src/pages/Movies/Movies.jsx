@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
-import { useSearchParams, useLocation, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { searchMovies } from 'services/moviesAPI';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { toast } from 'react-toastify';
+import { Loader } from 'components/Loader/Loader';
+
 
 const Movies = () => {
-  const location = useLocation();
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
@@ -35,12 +35,9 @@ const Movies = () => {
     fetchSearchMovies();
   }, [query]);
 
-  const goBack = useRef(location?.state?.from ?? '/');
-
   return (
     <div>
-      <Link to={goBack.current}>Go back</Link>
-      {loading && <p>Loader</p>}
+      {loading && <Loader />}
       {error && toast.error(`Something go wrong. Please try again`)}
       <SearchForm onSubmit={setSearchParams} />
       <MoviesList movies={searchResults} />
