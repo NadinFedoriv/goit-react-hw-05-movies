@@ -1,11 +1,12 @@
 import defaultImage from '../defaultImage/default-image.jpg';
+import { MovieInfoWrapper } from './MovieCard.styled';
 
 const MovieCard = ({ movieDetails }) => {
   const { title, vote_average, overview, poster_path, genres } = movieDetails;
   const userScore = Math.round(vote_average * 10);
 
   return (
-    <div>
+    <MovieInfoWrapper>
       <div>
         <img
           src={
@@ -24,7 +25,7 @@ const MovieCard = ({ movieDetails }) => {
         <h3>Genres</h3>
         <p>{genres.map(genre => genre.name).join(', ')}</p>
       </div>
-    </div>
+    </MovieInfoWrapper>
   );
 };
 

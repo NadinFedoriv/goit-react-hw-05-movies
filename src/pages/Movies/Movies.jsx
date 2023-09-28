@@ -6,7 +6,6 @@ import SearchForm from 'components/SearchForm/SearchForm';
 import { toast } from 'react-toastify';
 import { Loader } from 'components/Loader/Loader';
 
-
 const Movies = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

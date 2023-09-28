@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import { getMovieReviews } from 'services/moviesAPI';
 import { toast } from 'react-toastify';
+import { ReviewsWrapper } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -17,7 +18,6 @@ const Reviews = () => {
         setLoading(true);
         const details = await getMovieReviews(movieId);
         setMovieReviews(details.results);
-        console.log(details.results);
       } catch (error) {
         setError(error);
       } finally {
@@ -28,7 +28,7 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <>
+    <ReviewsWrapper>
       {loading && <Loader />}
       {error && toast.error(`Something go wrong. Please try again`)}
       {noFound ? (
@@ -43,7 +43,7 @@ const Reviews = () => {
           ))}
         </ul>
       )}
-    </>
+    </ReviewsWrapper>
   );
 };
 

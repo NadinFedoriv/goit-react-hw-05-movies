@@ -27,7 +27,11 @@ const Home = () => {
     <>
       {loading && <Loader />}
       {error && <p>Something go wrong</p>}
-      {movies.length > 0 && <MoviesList movies={movies} />}
+      {movies.length > 0 && (
+        <>
+          <h2>Trending today</h2> <MoviesList movies={movies} />
+        </>
+      )}
     </>
   );
 };

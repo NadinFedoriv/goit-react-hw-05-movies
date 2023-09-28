@@ -17,7 +17,6 @@ const Cast = () => {
         setLoading(true);
         const details = await getMovieCredits(movieId);
         setMovieCast(details.cast);
-        console.log(details.cast);
       } catch (error) {
         setError(error);
       } finally {

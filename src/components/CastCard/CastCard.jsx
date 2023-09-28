@@ -1,10 +1,11 @@
 import defaultImage from '../defaultImage/default-image.jpg';
+import { CastCardWrapper, ActorCard } from './CastCard.styled';
 
 const CastCard = ({ actors }) => {
   return (
-    <div>
+    <CastCardWrapper>
       {actors.map(actor => (
-        <div key={actor.id}>
+        <ActorCard key={actor.id}>
           <img
             src={
               actor.profile_path
@@ -21,9 +22,9 @@ const CastCard = ({ actors }) => {
               <p>Character: {actor.character}</p>
             </li>
           </ul>
-        </div>
+        </ActorCard>
       ))}
-    </div>
+    </CastCardWrapper>
   );
 };
 

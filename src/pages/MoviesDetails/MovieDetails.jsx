@@ -7,6 +7,7 @@ import { Suspense } from 'react';
 import MovieCard from 'components/MovieCard/MovieCard';
 import { Loader } from 'components/Loader/Loader';
 import { GoArrowLeft } from 'react-icons/go';
+import * as S from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -31,27 +32,31 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [movieId]);
 
-    const goBack = useRef(location?.state?.from ?? '/');
+  const goBack = useRef(location?.state?.from ?? '/');
 
   return (
-    <>
+    <S.Wrapper>
       {loading && <Loader />}
       {error && toast.error(`Something go wrong. Please try again`)}
-      <Link to={goBack.current}><GoArrowLeft/>Go back</Link>
+      <S.BackLink to={goBack.current}>
+        <GoArrowLeft />
+        Go back
+      </S.BackLink>
       {movieDetails ? <MovieCard movieDetails={movieDetails} /> : <Loader />}
-      <p>Additional information</p>
-      <ul>
-        <li>
+
+      <S.AdditionalInfo>Additional information</S.AdditionalInfo>
+      <S.InfoList>
+        <S.InfoItem>
           <Link to="cast">Cast</Link>
-        </li>
-        <li>
+        </S.InfoItem>
+        <S.InfoItem>
           <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Suspense fallback={<Loader/>}>
+        </S.InfoItem>
+      </S.InfoList>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </>
+    </S.Wrapper>
   );
 };
 
